@@ -6,6 +6,8 @@ import OrderDetail from "../views/OrderDetail.vue";
 import HistoryView from "../views/History.vue";
 import SearchView from "../views/SearchView.vue";
 import MapView from "../views/MapView.vue";
+import Login from "../views/Login.vue";
+import Mypage from "../views/Mypage.vue";
 
 Vue.use(VueRouter);
 
@@ -14,6 +16,16 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/mypage",
+    name: "mypage",
+    component: Mypage,
   },
   {
     path: "/laundry",

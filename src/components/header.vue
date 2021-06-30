@@ -2,7 +2,7 @@
   <div class="header">
     <div class="logo">
       <strong>데일리세탁</strong>
-      <span>Rider</span>
+      <span @click="$router.push('mypage')">Rider</span>
     </div>
     <div class="btns">
       <v-btn icon @click="$router.push('mapView')">
