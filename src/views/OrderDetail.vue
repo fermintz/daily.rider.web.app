@@ -15,6 +15,23 @@
 
     <div class="map"></div>
 
+    <div class="order-info">
+      <dl>
+        <dt>주문일시</dt>
+        <dd>
+          <span>21.06.20</span>
+          <span>오후 06:55</span>
+        </dd>
+      </dl>
+      <dl class="pickup">
+        <dt>수거희망일</dt>
+        <dd>
+          <span>21.06.21</span>
+          <span>월요일</span>
+        </dd>
+      </dl>
+    </div>
+
     <div class="order-btns">
 
       <v-btn text 
@@ -30,40 +47,32 @@
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
       <v-btn text
+        @click="modalHandle($refs.confirm, true, '수거지연알림', '수거지연안내 문자를 발송할까요?')"
+      >
+        <label>수거지연안내</label>
+        <v-icon>mdi-arrow-right</v-icon>
+      </v-btn>
+      <v-btn text
+        @click="modalHandle($refs.confirm, true, '배송지연안내', '배송지연안내 문자를 발송할까요?')"
+      >
+        <label>배송지연안내</label>
+        <v-icon>mdi-arrow-right</v-icon>
+      </v-btn>
+      <v-btn text
         @click="()=>this.$refs.postMessage.handle(true)"
       >
         <label>사용자알림</label>
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
+      
 
     </div>
 
-    <div class="order-info">
-      <dl>
-        <dt>주문일시</dt>
-        <dd>
-          <span>21.06.20</span>
-          <span>오후 06:55</span>
-        </dd>
-      </dl>
-      <dl>
-        <dt>수거희망일</dt>
-        <dd>
-          <span>21.06.21</span>
-          <span>월요일</span>
-        </dd>
-      </dl>
-      <dl>
-        <dt>수거요청시간</dt>
-        <dd>
-          <span>오전</span>
-          <span>08:00~12:00</span>
-        </dd>
-      </dl>
-    </div>
+    
 
     <div class="info-box user-info">
       <h4>주문자정보</h4>
+
       <dl>
         <dt>사용자명</dt>
         <dd>박수민</dd>
@@ -74,59 +83,135 @@
       </dl>
       <dl>
         <dt>주소지</dt>
-        <dd>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</dd>
+        <dd>
+          부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호
+        </dd>
       </dl>
       <dl>
         <dt>출입문</dt>
         <dd>별 누루고 3451 마지막 종 눌러주세요</dd>
       </dl>
+
+      <div class="user_info_btns">
+        <v-btn text>
+          <v-icon>mdi-phone</v-icon>
+          <span>전화</span>
+
+        </v-btn>
+        <v-btn text @click="snackbarHandle">
+          <v-icon>mdi-content-copy</v-icon>
+          <span>주소복사</span> 
+        </v-btn>
+      </div>
     </div>
 
     <div class="info-box user-message">
-      <h4>고객 요청사항</h4>
-      <p>빠른 배송 부탁드립니다.</p>
-    </div>
-
-    <div class="info-box product">
-      <h4>주문목록</h4>
-      <ul>
-        <li>
-          <span class="name"
-            >이불커버/침대커버(홀겹) <label>(6,900)</label></span
-          >
-          <span class="amount">8</span>
-          <span class="price">55,200 원</span>
-        </li>
-        <li>
-          <span class="name">베게커버 <label>(6,900)</label></span>
-          <span class="amount">8</span>
-          <span class="price">55,200 원</span>
-        </li>
-      </ul>
       <dl>
-        <dt>합계</dt>
-        <dd>79,900 원</dd>
+        <dt>
+          고객 요청사항
+        </dt>
+        <dd>
+          빠른 배송 부탁드립니다.
+        </dd>
       </dl>
     </div>
 
-    <div class="next-btn" v-ripple>
-      <label>수거완료</label>
-      <span>
-        <v-icon> mdi-arrow-right-circle </v-icon>
-      </span>
+    <div class="product_info">
+      <dl class="user_product">
+        <dt>검수 완료 후 변동내역</dt>
+        <dd>
+          <div class="item check">
+            <div class="left">
+              <label>와이셔츠</label>
+              <div class="price">
+                <span>4,000원</span>
+                <strong>3,000원</strong>
+              </div>
+            </div>
+            <div class="amount">
+              2
+            </div>
+            <div class="total">
+              8,000 원
+            </div>
+          </div> <!-- item -->
+          <div class="item">
+            <div class="left">
+              <label>정장하의</label>
+              <div class="price">
+                <span>4,000원</span>
+                <strong>3,000원</strong>
+              </div>
+            </div>
+            <div class="amount">
+              3
+            </div>
+            <div class="total">
+              12,000 원
+            </div>
+          </div>
+        </dd>
+      </dl>
+
+      <div class="divider"/>
+
+      <dl class="user_product">
+        <dt>고객 주문내역</dt>
+        <dd>
+          <div class="item">
+            <div class="left">
+              <label>와이셔츠</label>
+              <div class="price">
+                <span>4,000원</span>
+                <strong>3,000원</strong>
+              </div>
+            </div>
+            <div class="amount">
+              3
+            </div>
+            <div class="total">
+              12,000 원
+            </div>
+          </div>
+          <div class="item">
+            <div class="left">
+              <label>정장하의</label>
+              <div class="price">
+                <span>4,000원</span>
+                <strong>3,000원</strong>
+              </div>
+            </div>
+            <div class="amount">
+              3
+            </div>
+            <div class="total">
+              12,000 원
+            </div>
+          </div>
+        </dd>
+      </dl>
     </div>
 
-    
+    <div class="page_bottom">
+      <div class="btns">
+        <v-btn text class="finish">
+          <label>세탁시작</label>
+          <v-icon> mdi-arrow-right-circle </v-icon>
+        </v-btn>
+      </div>
+    </div>
+    <Snackbars ref="snackbar"/>   
   </div>
 </template>
 
 <script>
 import Confirm from '@/components/modal/confirm.vue'
 import PostMessage from '@/components/modal/postMessage.vue'
+import Snackbars from "@/components/snackbars.vue"
 
 export default {
   components:{
-    Confirm, PostMessage
+    Confirm, PostMessage, Snackbars,
   },
   data() {
     return {
@@ -148,6 +233,10 @@ export default {
       refs.handle(value);
       refs.title = title;
       refs.message = message;
+    },
+    snackbarHandle(){
+      this.$refs.snackbar.handle(true);
+      this.$refs.snackbar.message = '주소가 복사되었습니다'
     }
   },
 };
@@ -158,6 +247,7 @@ export default {
   position: relative;
   height: 100%;
   background: #f8f8f8;
+  padding-bottom:90px;
 
   .head{
     width:100%;
@@ -178,9 +268,6 @@ export default {
     }
   }
 }
-
-
-
 
 .map {
   height: 240px;
@@ -214,26 +301,37 @@ export default {
   dl:last-child {
     border-right: 0px;
   }
+
+  dl.pickup{
+    dd{
+      span{
+        color:#de0059;
+      }
+    }
+  }
 }
 
 .order-btns {
-  display: flex;
-  margin-bottom:20px;
+  margin-bottom:10px;
   background:#fff;
-  border-top:1px solid #c2c2c2;
-  border-bottom:1px solid #c2c2c2;
+  padding:15px;
+  border-bottom:1px solid #e2e2e2;
 
   .v-btn {
-    display: flex;
+    display:flex;
+    align-items: center;
     justify-content: space-between;
-    flex: 1;
-    border-radius: 0px;
+    width:100%;
+    border:1px solid #c2c2c2;
+    border-radius: 5px;
     padding: 0px 10px;
-    height: 44px;
-    border-right: 1px solid #c2c2c2;
+    height: 50px;
+    margin-bottom:10px;
+    box-shadow: 3px 3px 12px rgba(0,0,0,0.05);
+    background:#fff;
 
     label {
-      font-size: 12px;
+      font-size: 14px;
       color: #292929;
     }
     .v-icon {
@@ -241,15 +339,14 @@ export default {
       color: #df0e68;
     }
   }
-  .v-btn:last-child {
-    border-right: 0px;
-  }
+
 
 }
 
 .info-box {
   border-bottom: 1px solid #e2e2e2;
-  padding: 15px;
+  border-top:1px solid #e2e2e2;
+  padding: 20px;
   background: #fff;
 
   h4 {
@@ -270,71 +367,149 @@ export default {
       flex: 1;
     }
   }
+
+  .user_info_btns{
+    display:flex;
+    border:1px solid #c2c2c2;
+    margin-top:30px;
+    border-radius:5px;
+    overflow:hidden;
+
+    .v-btn{
+      border-radius:0;
+      flex:1;
+      height:40px;
+      border-right:1px solid #c2c2c2;
+      
+      .v-icon{
+        font-size:14px;
+        margin-right:5px;
+      }
+      span{
+        font-size:14px;
+      }
+    }
+    .v-btn:last-child{
+      border-right:0px;
+    }
+  }
+
+  
 }
 
 .user-message {
-  p {
+  margin-top:10px;
+  border-top:1px solid #e2e2e2;
+  border-bottom:1px solid #e2e2e2;
+  padding:20px;
+
+  dt{
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:15px;
+  }
+  dd {
     padding: 10px;
+    border-radius:5px;
     background: #f8f6f1;
   }
 }
 
-.product {
-  ul {
-    padding: 0px;
-    margin: 0px;
+.product_info{
+  padding:20px;
+  background:#fff;
+  margin-top:10px;
+  border-top:1px solid #e2e2e2;
+  border-bottom:1px solid #e2e2e2;
 
-    li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
+  .divider{
+    height:1px;
+    background:#e2e2e2;
+    margin:30px 0;
+  }
 
-      span.name {
-        text-align: left;
-        flex: 1;
+  dl{
+     dt{
+        font-size:16px;
+        font-weight:bold;
+        margin-bottom:15px;
+      }
+    }
 
-        label {
-          font-size: 10px;
-          color: #888;
+  dl:last-child{
+    margin-bottom:0px;
+  }
+
+  dl.user_product{
+
+
+    dd{
+      .item{
+        display:flex;
+        align-items: center;
+        border:1px solid #e2e2e2;
+        padding:15px;
+        border-radius:5px;
+        margin-bottom:10px;
+
+        .left{
+          flex:1;
+          label{
+            display:block;
+            font-size:14px;
+          }
+          .price{
+            display:flex;
+            align-items: center;
+            font-size:12px;
+            span{
+              text-decoration: line-through;
+              color:#999;
+            }
+            strong{
+              margin-left:5px;
+            }
+          }
+        }
+
+        .amount{
+          display:flex;
+          justify-content: center;
+          align-items: center;
+          border-radius:18px;
+          width:30px;
+          height:30px;
+          font-size:12px;
+          background:#f2f2f2;
+        }
+        .total{
+          width:90px;
+          text-align:right;
         }
       }
-      span.amount {
-        width: 40px;
-        text-align: center;
+
+      .item.check{
+        background:#FBEFF4;
+        border:0px;
+        .amount{
+          color:#f11064;
+          background:#fff;
+        }
+        .total{
+          color:#f11064;
+        }
       }
-      span.price {
-        width: 70px;
-        text-align: right;
-      }
-    }
 
-    li.change {
-      color: #df0e68;
-    }
-  }
-  dl {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid #e2e2e2;
-    margin-top: 15px;
-    padding-top: 15px;
-
-    dt {
-      background: #595959;
-      color: #fff;
-      font-size: 10px;
-      padding: 0 5px;
-      border-radius: 3px;
-    }
-  }
-}
-
-.check-product {
-  background: #fff6fa;
-  dl {
-    dt {
-      background: #f11064;
+      .price_total{
+        background:#f2f2f2;
+        border-radius:5px;
+        padding:15px;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        span{font-size:12px;}
+        strong{font-weight:bold;}
+      }  
     }
   }
 }
@@ -360,21 +535,41 @@ export default {
   }
 }
 
-.next-btn {
-  margin-top: 20px;
-  height: 56px;
-  padding: 0 15px;
-  display: flex;
-  background: #008be8;
-  justify-content: center;
-  align-items: center;
-  label {
-    color: #fff;
-    font-size: 16px;
-  }
-  .v-icon {
-    margin-left: 10px;
-    color: #fff;
+.page_bottom{
+  width:100%;
+  border-top:1px solid #e2e2e2;
+  position: fixed;
+  bottom:0px;
+  padding:10px;
+  background:#fff;
+
+  .btns{
+    display:flex;
+    align-items: center;
+
+    .v-btn{
+      flex:1;
+      height:50px;
+      border:1px solid #c2c2c2;
+      margin-right:10px;
+      font-size:14px;
+      font-weight:bold;
+
+      .v-icon{
+        margin-left:5px;
+        font-size:18px;
+      }
+    }
+
+    .v-btn.finish{
+      background:#008be8;
+      color:#fff;
+      border:0px;
+    }
+
+    .v-btn:last-child{
+      margin-right:0px;
+    }
   }
 }
 </style>

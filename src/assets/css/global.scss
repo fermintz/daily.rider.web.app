@@ -92,3 +92,10 @@ ul,ol{
     }
   }
 }
+
+.theme--light.v-btn--active:hover::before, .theme--light.v-btn--active::before{
+  opacity:0;
+}
+.theme--light.v-btn:hover::before{
+  opacity:0;
+}

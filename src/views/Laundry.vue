@@ -14,18 +14,22 @@
         <span class="phone">051-336-3307</span>
       </div>
       <div class="btns">
-        <v-btn text plain>
-          <v-icon>mdi-phone</v-icon>
-          <span>전화하기</span>
-        </v-btn>
-        <v-btn text plain>
-          <v-icon>mdi-map-marker</v-icon>
-          <span>네비안내</span>
-        </v-btn>
-        <v-btn text plain>
-          <v-icon>mdi-content-copy</v-icon>
-          <span>주소복사</span>
-        </v-btn>
+        <dl>
+          <dt v-ripple>
+            <v-icon>
+              mdi-phone
+            </v-icon>
+          </dt>
+          <dd>전화</dd>
+        </dl>
+        <dl>
+          <dt v-ripple>
+            <v-icon>
+              mdi-content-copy
+            </v-icon>
+          </dt>
+          <dd>주소복사</dd>
+        </dl>
       </div>
     </div>
 
@@ -45,18 +49,18 @@
     </div>
 
     <div class="workList">
-      <OrderCard v-for="item in 6" :key="item" />
+      <ShopOrderCard v-for="item in 6" :key="item" />
     </div>
   </div>
 </template>
 
 <script>
-import OrderCard from "@/components/orderCard.vue";
+import ShopOrderCard from "@/components/shopOrderCard.vue";
 
 
 export default {
   components: {
-    OrderCard,
+    ShopOrderCard,
   },
   data() {
     return {
@@ -112,54 +116,69 @@ export default {
   }
 
   .shop {
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
     padding: 20px;
     border-top: 1px solid #e2e2e2;
     border-bottom: 1px solid #e2e2e2;
     background: #fff;
 
     .shop-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
+      margin-right:20px;
+      span{
+        display:block;
+        text-align:left;
+      }
       span.name {
         font-size: 16px;
         font-weight: bold;
       }
       span.address {
-        text-align: center;
+        font-size:11px;
         margin-top: 5px;
         color: #888;
       }
       span.phone {
         color: #08b882;
-        margin-top: 10px;
+        margin-top: 5px;
       }
     }
 
     .btns {
       display: flex;
-      border: 1px solid #e2e2e2;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 15px;
 
-      .v-btn {
-        flex: 1;
-        border-radius: 0px;
-        border-right: 1px solid #e2e2e2;
-
-        .v-icon {
-          font-size: 14px;
-          margin-right: 4px;
-          color: #c2c2c2;
+      dl{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right:10px;
+        dt{
+          display:flex;
+          justify-content: center;
+          align-items: center;
+          width:40px;
+          height:40px;
+          border-radius:20px;
+          background:#f2f2f2;
+          .v-icon{
+            font-size:18px;
+          }
         }
-        span {
-          font-size: 12.5px;
+        dd{
+          text-align:center;
+          font-size:10px;
+          margin-top:5px;
         }
       }
+      dl:last-child{
+        margin-right:0px;
+      }
     }
+  }
+  .workList{
+    background:#f8f8f8;
   }
 
   .workTabs {

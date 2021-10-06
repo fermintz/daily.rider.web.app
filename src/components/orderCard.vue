@@ -1,6 +1,6 @@
 <template>
   <div class="item" @click="$router.push('orderDetail')">
-    <div class="item-head">
+    <div class="item_head">
       <div class="icons">
         <span>주문완료</span>
         <span class="refound">반품</span>
@@ -9,14 +9,16 @@
         2021.01.23 12:34
       </div>
     </div>
-    <div class="item-body">
+    <div class="item_cont">
       <div class="top">
         <div class="pickup-info">
-          <dl class="box">
-            <dt>월요일</dt>
-            <dd>오전</dd>
-          </dl>
-          <span>21.01.26</span>
+          <div class="pickup_number">
+            21834
+          </div>
+          <div class="box">
+            <span>01.26</span>
+            <strong>월요일</strong>
+          </div>
         </div>
         <div class="user-info">
           <dl class="name">
@@ -32,34 +34,37 @@
           </dl>
           <dl class="gate">
             <dt><v-icon>mdi-lock</v-icon></dt>
-            <dd>경비 열쇠 9876 종</dd>
+            <dd>경비 열쇠 9876 종 경비 열쇠 9876 종경비 열쇠 9876 종경비 열쇠 9876 종경비 열쇠 9876 종</dd>
           </dl>
         </div>
         <div class="btns">
           <v-btn text @click.stop="snackbar(true, '주소가 복사되었습니다')">주소복사</v-btn>
-          <v-btn text >네비안내</v-btn>
+          <v-btn text >수거지연</v-btn>
+          <v-btn text >배송지연</v-btn>
         </div>
       </div>
-      <div class="bottom">
+      <div class="item_bottom">
+        <div class="product_info">
+          <dl>
+            <dt>상품</dt>
+            <dd>11개</dd>
+          </dl>
+          <dl>
+            <dt>주문금액</dt>
+            <dd>15,900원</dd>
+          </dl>
+        </div>
+        <v-btn class="finishBtn" text @click.stop="modal(true)">
+          수거완료
+        </v-btn>
+      </div> 
+      <div class="user_message">
         <dl>
-          <dt>상품</dt>
-          <dd>11개</dd>
-        </dl>
-        <dl>
-          <dt>주문금액</dt>
-          <dd>15,900원</dd>
+          <dt><v-icon>mdi-message</v-icon></dt>
+          <dd>문앞에 걸어둘게요!</dd>
         </dl>
       </div>
-      <v-btn class="finishBtn" text @click.stop="modal(true)">
-        수거완료
-      </v-btn>
-    </div>
-    <div class="item-bottom">
-      <dl>
-        <dt><v-icon>mdi-message</v-icon></dt>
-        <dd>문앞에 걸어둘게요!</dd>
-      </dl>
-    </div>
+    </div> <!-- item_body -->
   </div> <!-- item -->
 </template>
 
@@ -86,7 +91,7 @@ export default {
   border-bottom:1px solid #e2e2e2;
   min-height:100px;
 
-  .item-head{
+  .item_head{
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -119,7 +124,7 @@ export default {
       font-size:11px;
     }
   }
-  .item-body{
+  .item_cont{
     position: relative;
     padding:10px;
     min-height:150px;
@@ -133,7 +138,20 @@ export default {
         align-items: flex-start;
         margin-right:15px;
 
-        dl{
+        .pickup_number{
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          border-radius:5px;
+          background:#f2f2f2;
+          width:100%;
+          height:26px;
+          margin-bottom:8px;
+          font-size:14px;
+          font-weight:500;
+        }
+
+        .box{
           display:flex;
           flex-direction: column;
           justify-content: center;
@@ -142,11 +160,9 @@ export default {
           height:60px;
           border-radius:10px;
           border:1px solid #008BE8;
-          dt{font-size:11px;margin-bottom:2px;}
-          dd{font-size:18px;font-weight:600;color:#008BE8;line-height:16px;}
+          span{font-size:12px;margin-bottom:2px;font-weight:500;}
+          strong{font-size:14px;font-weight:normal;color:#008BE8;line-height:16px;}
         }
-
-        span{font-size:11px;margin-top:5px;color:#008BE8;text-align:center;width:100%;}
       }
 
       .user-info{
@@ -190,6 +206,18 @@ export default {
             .v-icon{margin-top:3px;}
           }
         }
+        dl.gate{
+          align-items: flex-start;
+          dt{
+            .v-icon{
+              color:#DF0E68;
+              margin-top:2px; 
+            }
+          }
+          dd{
+            color:#DF0E68
+          }
+        }
       }
 
       .btns{
@@ -209,34 +237,57 @@ export default {
       }
     }
 
-    .bottom{
+    .item_bottom{
       display:flex;
-      margin-top:15px;
-
-      dl{
+      align-items: flex-end;
+      justify-content: space-between;
+      
+      .product_info{
         display:flex;
         align-items: center;
-        justify-content: center;
-        margin-right:5px;
-        background: #F8E8EF;
-        height:22px;
-        padding:0 5px;
-        border-radius:3px;
+        margin-top:15px;
 
-        dt{
-          font-size:11px;
-          color:#888;
-          margin-right:3px;
-        }
-        dd{
-          font-size:11px;
+        dl{
+          display:flex;
+          align-items: center;
+          justify-content: center;
+          margin-right:5px;
+          background: #F2F4F9;
+          height:22px;
+          padding:0 5px;
+          border-radius:3px;
+
+          dt{
+            font-size:12px;
+            color:#888;
+            margin-right:3px;
+          }
+          dd{
+            font-size:12px;
+          }
         }
       }
+
+      .finishBtn{
+        min-width:unset;
+        width:auto;
+        height:36px;
+        width:90px;
+        font-size:13px;
+        font-weight:600;
+        letter-spacing: 0px;
+        background: #292929;
+        color:#fff;
+      }
     }
+
+    
   }
-  .item-bottom{
+  .user_message{
     padding:10px;
+    margin-top:10px;
     background: #F2F0E7;
+    border-radius:5px;
 
     dl{
       display:flex;
@@ -248,24 +299,8 @@ export default {
       dd{
         font-size:12px;
       }
-    }
-    
-    
-    
+    }    
   }
-  .finishBtn{
-    position: absolute;
-    bottom:10px;
-    right:10px;
-    min-width:unset;
-    width:auto;
-    height:34px;
-    padding:0 15px;
-    font-size:13px;
-    font-weight:600;
-    letter-spacing: 0px;
-    background: #292929;
-    color:#fff;
-  }
+  
 }
 </style>

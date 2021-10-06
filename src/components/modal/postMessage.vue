@@ -83,10 +83,14 @@
             </dd>
           </dl>
         </div>
+      </div>
 
+      <div class="page_bottom">
         <div class="btns">
-          <v-btn text>취소</v-btn>
-          <v-btn text class="finish">메세지 보내기</v-btn>
+          <v-btn text class="finish">
+            <label>메세지전송</label>
+            <v-icon> mdi-arrow-right-circle </v-icon>
+          </v-btn>
         </div>
       </div>
     </div>
@@ -146,10 +150,11 @@ export default {
 
   .cont{
     textarea{
-      border:1px solid #e2e2e2;
+      border:1px solid #c2c2c2;
       width:100%;
       padding:5px;
-      min-height:70px;
+      height:150px;
+      resize:none;
     }
 
     dl{
@@ -190,6 +195,13 @@ export default {
       h4{
         font-size:16px;
         margin-bottom:15px;
+      }
+
+      .row{
+        margin:-8px;
+      }
+      .col{
+        padding:8px;
       }
 
       .img-box{
@@ -243,28 +255,42 @@ export default {
     }
   }
 
-  .btns{
-    height:60px;
-    left:0px;
-    display:flex;
-    justify-content: flex-end;
-    align-items: center;
+  .page_bottom{
     width:100%;
-    position: absolute;
-    bottom:0px;
-    padding:0 16px;
     border-top:1px solid #e2e2e2;
-    background:#f8f8f8;
+    position: fixed;
+    bottom:0px;
+    padding:10px;
+    background:#fff;
+    z-index:99;
 
-    .v-btn{
-      border:1px solid #e2e2e2;
-      margin-left:10px;
-      font-size:14px;
-      background:#fff;
-    }
+    .btns{
+      display:flex;
+      align-items: center;
 
-    .v-btn.finish{
-      color:#008BE8;
+      .v-btn{
+        flex:1;
+        height:50px;
+        border:1px solid #c2c2c2;
+        margin-right:10px;
+        font-size:14px;
+        font-weight:bold;
+
+        .v-icon{
+          margin-left:5px;
+          font-size:18px;
+        }
+      }
+
+      .v-btn.finish{
+        background:#008be8;
+        color:#fff;
+        border:0px;
+      }
+
+      .v-btn:last-child{
+        margin-right:0px;
+      }
     }
   }
   

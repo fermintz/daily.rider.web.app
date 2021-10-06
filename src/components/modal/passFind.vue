@@ -7,7 +7,7 @@
         <div class="top">
           <div class="head">
             <h3>비밀번호 찾기</h3>
-            <v-btn icon>
+            <v-btn icon  @click="visible=false">
               <v-icon>mdi-close</v-icon>
             </v-btn>
           </div>
@@ -18,7 +18,6 @@
               발송하기
             </v-btn>
           </div>
-          
         </div>
       </div>
     </div>

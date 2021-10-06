@@ -23,35 +23,28 @@
       <p><b>'0808'</b> 검색결과입니다</p>
 
       <div class="list">
-        <div class="orderItem" v-for="item in 5" :key="item">
-          <div class="state">
-            <span>배송완료</span>
-            <dl>
-              <dt>주문일</dt>
-              <dd>2021.01.23</dd>
-            </dl>
-          </div>
-          <div class="user-info">
-            <span class="name">박수민</span>
-            <span class="address">부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호</span>
-            <span class="phone">010-8525-4561</span>
-            <span class="gate">*누르고 4512 누루고 종모양 눌러주세요!</span>
-          </div>
-          <div class="btns">
-            <v-btn text>주소복사</v-btn>
-            <v-btn text>네비안내</v-btn>
-          </div>
-        </div>
-      </div>
+        <ShopOrderCard v-for="item in 10" :key="item" ref="shopOrderCard"/>
+      </div> <!-- list -->
     </div>
 
-    <div class="divider" />
+
   </div>
 </template>
 
+<script>
+import ShopOrderCard from '@/components/shopOrderCard'
+export default {
+  components:{ShopOrderCard,},
+  mounted(){
+    this.$refs.shopOrderCard.btns = false
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .searchView{
-  height:100%;
+  padding-bottom:10px;
+
 }
 
 .top{
@@ -124,71 +117,5 @@
     border-bottom:1px solid #e2e2e2;
   }
 
-  .list{
-    .orderItem{
-      border-bottom:1px solid #e2e2e2;
-      padding:16px;
-      display:flex;
-
-      .state{
-        margin-right:15px;
-
-        span{
-          display:flex;
-          justify-content: center;
-          align-items: center;
-          background:#292929;
-          color:#fff;
-          border-radius:5px;
-          font-size:10px;
-          padding:3px;
-          height:36px;
-        }
-
-        dl{
-          margin-top:10px;
-          dt{font-size:11px;color:#888}
-          dd{
-            font-size:11px;
-          }
-        }
-      }
-      .user-info{
-        flex:1;
-        font-size:12px;
-        span{
-          display:block;
-          margin-bottom:4px;
-        }
-
-        .name{
-          font-size:14px;
-        }
-        .phone{
-          color:#08B882
-        }
-        .gate{
-
-        }
-      }
-      .btns{
-        margin-left:10px;
-        display:flex;
-        flex-direction: column;
-        .v-btn{
-          border:1px solid #e2e2e2;
-          height:22px;
-          min-width:auto;
-          padding:0 5px;
-          margin-bottom:8px;
-          font-size:10px;
-        }
-
-      }
-    }
-    .orderItem:last-child{
-      border:0px;
-    }
-  }
 }
 </style>
