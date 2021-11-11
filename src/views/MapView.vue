@@ -26,31 +26,31 @@
     </div>
 
     <div class="bottom_wrap">
-      <div class="shop-info-box">
-        <div class="top">
-          <div class="left">
-            <strong>선경세탁소</strong>
-            <span>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호 페이오티</span>
-          </div>
-          <div class="right">
-            <div class="numBox in">
-              <strong>1</strong>
-              <span>입고</span>
-            </div>
-            <div class="numBox out">
-              <strong>4</strong>
-              <span>출고</span>
-            </div>
-          </div>
-        </div>
-        <div class="btns">
-          <v-btn text>전화</v-btn>
-          <v-btn text>주소복사</v-btn>
-        </div>
-      </div>
+      
     </div>
 
     <div class="bottom_scroll_wrap">
+      <div class="shop-info-box">
+        <div class="top">
+          <strong>선경세탁소</strong>
+          <span>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호 페이오티</span>
+        </div>
+        <div class="num_info">
+          <div class="numBox in">
+            <span>입고</span>
+            <strong>1</strong> 
+          </div>
+          <div class="numBox out">
+            <span>출고</span>
+            <strong>4</strong>
+          </div>
+        </div>
+        <div class="btns">
+          <v-btn text>전화</v-btn>
+          <v-btn text>주소복사</v-btn>
+        </div>
+      </div>
+
       <div class="user-info-box">
         <div class="top">
           <div class="name">박수민</div>
@@ -94,6 +94,8 @@
           <v-btn text>주소복사</v-btn>
         </div>
       </div>
+
+      
     </div>
 
  
@@ -177,106 +179,7 @@
   }
 }
 
-.bottom_wrap{
-  position: fixed;
-  display:flex;
-  padding:15px;
-  bottom:0px;
-  left:0px;
-  width:100%;
-
-  .shop-info-box{
-    background:#fff;
-    width:100%;
-    padding:15px;
-    border-radius:10px;
-    border:1px solid #e2e2e2;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.06);
-    display:none;
-
-    .top{
-      display:flex;
-      align-items: center;
-      
-      .left{
-        flex:1;
-        margin-right:15px;
-        strong{
-          display:block;
-          font-size:14px;
-        }
-        span{
-          display:block;
-          font-size:11px;
-          margin-top:5px;
-          color:#898989;
-        }
-      }
-      .right{
-        display:flex;
-        align-items: center;
-
-        .numBox{
-          display:flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align:center;
-          width:50px;
-          height:50px;
-          border-radius:5px;
-          margin-left:5px;
-          span{
-            font-size:10px;
-            display:block;
-          }
-          strong{
-            font-size:16px;
-            font-weight:500;
-            font-family:'Roboto';
-            display:block;
-          }
-        }
-        .numBox{
-          margin-left:5px;
-        }
-
-        .numBox.in{
-          background:#F6EDF1;
-          strong{
-            color:#DF0E68
-          }
-        }
-        .numBox.out{
-          background:#F2F4F9;
-          strong{
-            color:#008BE8
-          }
-        }
-      }
-    }
-  }
-
-  .btns{
-    display:flex;
-    align-items: center;
-    width:100%;
-    margin-top:15px;
-
-    .v-btn{
-      flex:1;
-      height:40px;
-      border:1px solid #d2d2d2;
-      margin-right:10px;
-    }
-    .v-btn:last-child{
-      margin-right:0px;
-    }
-  }
-}
-
 .bottom_scroll_wrap{
-  
   position: fixed;
   display:flex;
   padding:15px;
@@ -284,6 +187,102 @@
   left:0px;
   width:100%;
   overflow-y:scroll;
+
+  .shop-info-box{
+    position: relative;
+    min-width:230px;
+    min-height:230px;
+    background:#fff;
+    width:100%;
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #16AF80;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.06);
+    margin-right:10px;
+
+    .top{      
+      flex:1;
+
+      strong{
+        display:block;
+        font-weight:normal;
+        font-size:14px;
+        color:#16AF80;
+      }
+      span{
+        display:block;
+        font-size:11px;
+        margin-top:10px;
+        color:#898989;
+      }
+    }
+
+    .num_info{
+      display:flex;
+      align-items: center;
+      margin-top:10px;
+
+      .numBox{
+        flex:1;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:0 10px;
+        text-align:center;
+        height:30px;
+        border-radius:5px;
+        margin-right:5px;
+
+        span{
+          font-size:10px;
+          display:block;
+        }
+        strong{
+          font-size:14px;
+          font-weight:500;
+          font-family:'Roboto';
+          display:block;
+        }
+      }
+      .numBox:last-child{
+        margin-right:0px;
+      }
+
+      .numBox.in{
+        background:#F6EDF1;
+        strong{
+          color:#DF0E68
+        }
+      }
+      .numBox.out{
+        background:#F2F4F9;
+        strong{
+          color:#008BE8
+        }
+      }
+    }
+
+    .btns{
+      position:absolute;
+      width:100%;
+      left:0px;
+      padding:0 15px;
+      bottom:15px;
+      display:flex;
+
+      .v-btn{
+        flex:1;
+        margin-right:10px;
+        border:1px solid #d2d2d2;
+        height:34px;
+      }
+      .v-btn:last-child{
+        margin-right:0px;
+      }
+    }
+  }
+
+  
   
   
   .user-info-box{
@@ -296,7 +295,7 @@
     margin-right:10px;
     background:#fff;
     border-radius:10px;
-    border:1px solid #e2e2e2;
+    border:1px solid #d2d2d2;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.06);
 
     .top{
