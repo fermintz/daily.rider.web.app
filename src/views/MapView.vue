@@ -1,5 +1,5 @@
 <template>
-  <div class="mapView">
+  <div class="map">
     <div class="head">
       <v-btn icon @click="$router.go(-1)">
         <v-icon>mdi-arrow-left</v-icon>
@@ -8,11 +8,11 @@
 
     <div class="state">
       <dl class="pickup" id="pickup" @click="testMap('안녕')">
-        <dt>{{pickupData.length}}</dt>
+        <dt>10</dt>
         <dd>수거</dd>
       </dl>
       <dl class="laundry-in"  id="laundry">
-        <dt>{{laundry.length}}</dt>
+        <dt>2</dt>
         <dd>입고</dd>
       </dl>
       <dl class="laundry-out">
@@ -20,133 +20,97 @@
         <dd>출고</dd>
       </dl>
       <dl class="delivery" id="delivery">
-        <dt>{{deliveryData.length}}</dt>
+        <dt>1</dt>
         <dd>배송</dd>
       </dl>
     </div>
 
-    <div class="order">
-      <OrderCard />
+    <div class="bottom_wrap">
+      <div class="shop-info-box">
+        <div class="top">
+          <div class="left">
+            <strong>선경세탁소</strong>
+            <span>부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호 페이오티</span>
+          </div>
+          <div class="right">
+            <div class="numBox in">
+              <strong>1</strong>
+              <span>입고</span>
+            </div>
+            <div class="numBox out">
+              <strong>4</strong>
+              <span>출고</span>
+            </div>
+          </div>
+        </div>
+        <div class="btns">
+          <v-btn text>전화</v-btn>
+          <v-btn text>주소복사</v-btn>
+        </div>
+      </div>
     </div>
 
-    <div class="map">
+    <div class="bottom_scroll_wrap">
+      <div class="user-info-box">
+        <div class="top">
+          <div class="name">박수민</div>
+          <div class="number">31489</div>
+        </div>
+        <div class="pickup">
+          <span>11.01(월)</span>
+          <strong>08:00부터</strong>
+        </div>
+        <div class="address">
+          부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호 페이오티
+        </div>
+        <div class="summary">
+          <span>상품 18개</span>
+          <span>15,900원</span>
+        </div>
+        <div class="btns">
+          <v-btn text>전화</v-btn>
+          <v-btn text>주소복사</v-btn>
+        </div>
+      </div>
 
+      <div class="user-info-box">
+        <div class="top">
+          <div class="name">박수민</div>
+          <div class="number">31489</div>
+        </div>
+        <div class="pickup">
+          <span>11.01(월)</span>
+          <strong>08:00부터</strong>
+        </div>
+        <div class="address">
+          부산광역시 금정구 부산대학로 63번길 2 과학기술연구동 201호 페이오티
+        </div>
+        <div class="summary">
+          <span>상품 18개</span>
+          <span>15,900원</span>
+        </div>
+        <div class="btns">
+          <v-btn text>전화</v-btn>
+          <v-btn text>주소복사</v-btn>
+        </div>
+      </div>
     </div>
+
+ 
   </div>
 </template>
 
-<script>
-import OrderCard from '@/components/orderCard.vue'
 
-export default {
-  components:{
-    OrderCard,
-  },
-  data(){
-    return{
-      selectMarker:null,
-      pickupData:[
-        {
-          title: '카카오', 
-          position: new kakao.maps.LatLng(33.450705, 126.570677)
-        },
-        {
-          title: '생태연못', 
-          position: new kakao.maps.LatLng(33.450936, 126.569477)
-        },
-        {
-          title: '텃밭', 
-          position: new kakao.maps.LatLng(33.450879, 126.569940)
-        },
-      ],
-      laundry:[
-        {
-          title: '텃밭', 
-          position: new kakao.maps.LatLng(33.450879, 126.569940)
-        },
-      ],
-      deliveryData:[
-        {
-          title: '근린공원',
-          position: new kakao.maps.LatLng(33.451393, 126.570738)
-        }
-      ],
-    }
-  },
-
-  mounted(){
-    window.kakao && window.kakao.maps ? this.initMap() : this.addScript();
-  },
-  methods:{
-    initMap(){ 
-      var mapContainer = document.querySelector('.map'); 
-      var mapOptions = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), 
-        level: 3 }; 
-      // 지도를 생성
-      var map = new kakao.maps.Map(mapContainer, mapOptions);
-
-      var MarkerSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png'
-
-      function setMarker(position,img){
-        const marker = new kakao.maps.Marker({
-          map: map,
-          position: position,
-          image:img
-        })
-        
-        kakao.maps.event.addListener(marker, 'click', function(){
-          alert('바보')
-        })
-        
-        marker.setMap(map)
-      }
-
-      function markerImage(src, size, option){
-        let markerImg = new kakao.maps.MarkerImage(src, size, option)
-        return markerImg;
-      }
-      
-      
- 
-      this.pickupData.forEach((item) => {
-        let size = new kakao.maps.Size(22, 26);
-        let option = {  
-              spriteOrigin: new kakao.maps.Point(10, 0),    
-              spriteSize: new kakao.maps.Size(36, 98)  
-            };   
-        let setMarkerImage = markerImage(MarkerSrc, size, option)
-        setMarker(item.position, setMarkerImage)
-      })
-
-      this.deliveryData.forEach((item) => {
-        let size = new kakao.maps.Size(22, 26);
-        let option = {  
-              spriteOrigin: new kakao.maps.Point(10,72),    
-              spriteSize: new kakao.maps.Size(36, 98)  
-            };   
-        let setMarkerImage = markerImage(MarkerSrc, size, option)
-        setMarker(item.position, setMarkerImage)
-      })
-    },
-    
-    addScript(){ 
-      const script = document.createElement('script'); 
-      /* global kakao */ 
-      script.onload = () => 
-        kakao.maps.load(this.initMap); 
-        script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=fd35148c932ea7489978edead48076f2'; 
-        document.head.appendChild(script); 
-    }
-  }
-}
-</script>
 
 <style lang="scss" scoped>
-.mapView{
+.map{
   position: relative;
+  z-index:1;
+  background: #f2f2f2;
   height:100%;
+  padding:10px;
 }
+
 .head{
   width:100%;
   left:0px;
@@ -213,30 +177,196 @@ export default {
   }
 }
 
-.order{
-  position:fixed;  
-  width:100%;
-  z-index:2;
+.bottom_wrap{
+  position: fixed;
+  display:flex;
+  padding:15px;
   bottom:0px;
   left:0px;
-  padding:10px;
+  width:100%;
 
-  .item{
-    margin-top:0px;
+  .shop-info-box{
+    background:#fff;
+    width:100%;
+    padding:15px;
     border-radius:10px;
     border:1px solid #e2e2e2;
-    overflow:hidden;
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.06);
+    display:none;
+
+    .top{
+      display:flex;
+      align-items: center;
+      
+      .left{
+        flex:1;
+        margin-right:15px;
+        strong{
+          display:block;
+          font-size:14px;
+        }
+        span{
+          display:block;
+          font-size:11px;
+          margin-top:5px;
+          color:#898989;
+        }
+      }
+      .right{
+        display:flex;
+        align-items: center;
+
+        .numBox{
+          display:flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align:center;
+          width:50px;
+          height:50px;
+          border-radius:5px;
+          margin-left:5px;
+          span{
+            font-size:10px;
+            display:block;
+          }
+          strong{
+            font-size:16px;
+            font-weight:500;
+            font-family:'Roboto';
+            display:block;
+          }
+        }
+        .numBox{
+          margin-left:5px;
+        }
+
+        .numBox.in{
+          background:#F6EDF1;
+          strong{
+            color:#DF0E68
+          }
+        }
+        .numBox.out{
+          background:#F2F4F9;
+          strong{
+            color:#008BE8
+          }
+        }
+      }
+    }
+  }
+
+  .btns{
+    display:flex;
+    align-items: center;
+    width:100%;
+    margin-top:15px;
+
+    .v-btn{
+      flex:1;
+      height:40px;
+      border:1px solid #d2d2d2;
+      margin-right:10px;
+    }
+    .v-btn:last-child{
+      margin-right:0px;
+    }
+  }
+}
+
+.bottom_scroll_wrap{
+  
+  position: fixed;
+  display:flex;
+  padding:15px;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  overflow-y:scroll;
+  
+  
+  .user-info-box{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    min-width:230px;
+    min-height:230px;
+    padding:15px;
+    margin-right:10px;
+    background:#fff;
+    border-radius:10px;
+    border:1px solid #e2e2e2;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.06);
+
+    .top{
+      display:flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom:10px;
+    }
+    .pickup{
+      background:#f8f8f8;
+      height:30px;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      
+      span{
+        margin-right:10px;
+      }
+      strong{
+        color:#008BE8;
+        font-weight:normal;
+      }
+    }
+    .address{
+      font-size:11px;
+      color:#898989;
+      margin:10px 0;
+    }
+    .summary{
+      display:flex;
+      margin-bottom:10px;
+      span{
+        display:flex;
+        align-items: center;
+        background:#F6EDF1;
+        font-size:10px;
+        margin-right:10px;
+        height:20px;
+        padding:0 5px;
+        border-radius:3px;
+      }
+    }
+    .btns{
+      position:absolute;
+      width:100%;
+      left:0px;
+      padding:0 15px;
+      bottom:15px;
+      display:flex;
+
+      .v-btn{
+        flex:1;
+        margin-right:10px;
+        border:1px solid #d2d2d2;
+        height:34px;
+      }
+      .v-btn:last-child{
+        margin-right:0px;
+      }
+    }
+  }
+
+  .user-info-box:last-child{
+    margin-right:0px;
   }
 }
 
 
-.map{
-  position: relative;
-  z-index:1;
-  background: #f2f2f2;
-  height:100%;
-}
+
+
 
 </style>
 

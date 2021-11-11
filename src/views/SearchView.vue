@@ -26,8 +26,6 @@
         <ShopOrderCard v-for="item in 10" :key="item" ref="shopOrderCard"/>
       </div> <!-- list -->
     </div>
-
-
   </div>
 </template>
 
