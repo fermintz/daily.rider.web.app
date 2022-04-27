@@ -189,6 +189,22 @@
             </div>
           </div>
         </dd>
+      </dl>   
+    </div>
+
+    <div class="memo">
+      <dl>
+        <dt>메모</dt>
+        <dd>
+          <textarea placeholder="고객의 요청사항 및 전달사항 입력">
+
+          </textarea>
+          <div class="btns">
+            <v-btn text>
+              저장하기
+            </v-btn>
+          </div>
+        </dd>
       </dl>
     </div>
 
@@ -533,6 +549,41 @@ export default {
     }
     
   }
+}
+
+.memo{
+  margin-top:10px;
+  background:#fff;
+  border-top:1px solid #e2e2e2;
+  border-bottom:1px solid #e2e2e2;
+  padding:20px;
+
+  dt{
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:15px;
+  }
+  dd {
+    textarea{
+      border:1px solid #e2e2e2;
+      width:100%;
+      height:100px;
+      resize: none;;
+      padding:10px;
+      border-radius:5px;
+    }
+
+    .btns{
+      text-align:right;
+      margin-top:5px;
+      .v-btn{
+        background:#292929;
+        color:#fff;
+
+      }
+    }
+  }
+
 }
 
 .page_bottom{

@@ -319,11 +319,13 @@
         font-weight:normal;
       }
     }
+
     .address{
       font-size:11px;
       color:#898989;
       margin:10px 0;
     }
+    
     .summary{
       display:flex;
       margin-bottom:10px;

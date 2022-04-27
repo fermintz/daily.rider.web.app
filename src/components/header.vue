@@ -5,7 +5,7 @@
       <span @click="$router.push('mypage')">Rider</span>
     </div>
     <div class="btns">
-      <v-btn icon @click="$router.push('mapView')">
+      <v-btn icon @click="$router.push('riderMap')">
         <v-icon>mdi-map-marker</v-icon>
       </v-btn>
       <v-btn icon @click="$router.push('searchView')">

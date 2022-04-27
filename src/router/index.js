@@ -52,6 +52,11 @@ const routes = [
     name: "mapView",
     component: MapView,
   },
+  {
+    path: "/riderMap",
+    name: "riderMap",
+    component: ()=> import('@/views/riderMap/riderMap.vue')
+  },
 ];
 
 const router = new VueRouter({
